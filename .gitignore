@@ -1,8 +1,5 @@
-# Ignore database files
 *.db
 
-# Ignore Python cache files
 __pycache__/
 
-# Ignore virtual environment (if you use one)
 venv/
