@@ -27,3 +27,18 @@ def get_top_apps_today(n=3):
                    ORDER BY total DESC LIMIT ?
                    ''', (today, n))
     return cursor.fetchall()  # Returns all the rows from the result of the query
+
+
+def get_weekly_trend():
+    conn = connect_db
+    cursor = conn.cursor()
+
+    # Query to get the weekly trend of screen time
+    cursor.execute('''
+                   SELECT date, SUM(minutes) as total 
+                   FROM screen_time 
+                   WHERE date >= date('now', '-6 days') 
+                   GROUP BY date 
+                   ORDER BY date ASC
+                   ''')
+    return cursor.fetchall()
