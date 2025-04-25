@@ -1,10 +1,10 @@
-from db import connect_db
+from .db import connect_db
 import datetime
 
 
 def get_total_usage_today():
     today = datetime.date.today().isoformat()
-    conn = connect_db
+    conn = connect_db()
     cursor = conn.cursor()
 
     # SQL query to get the total minutes of screentime today
@@ -16,7 +16,7 @@ def get_total_usage_today():
 
 def get_top_apps_today(n=3):
     today = datetime.date.today().isoformat()
-    conn = connect_db
+    conn = connect_db()
     cursor = conn.cursor()
 
     cursor.execute('''
@@ -30,7 +30,7 @@ def get_top_apps_today(n=3):
 
 
 def get_weekly_trend():
-    conn = connect_db
+    conn = connect_db()
     cursor = conn.cursor()
 
     # Query to get the weekly trend of screen time
